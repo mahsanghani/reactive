@@ -5,13 +5,13 @@ import ReactDOM from 'react-dom'
 //https://scrimba.com/p/p7P5Hd/cepwWUp
 
 function App() {
-  return( 
+  return(
     ReactDOM.render(<h1>Hello World!</h1>, document.getElementId("root"))
 		);
 }
 
 function App() {
-  return( 
+  return(
    		// JSX
       ReactDOM.render(<div><h1>Hello world!</h1><p>This is a paragraph</p></div>, document.getElementById("root"))
 
@@ -37,18 +37,18 @@ function App() {
   );
 }
 
-function MyApp() {  
-  return (  
-    <ul>  
-       <li>1</li>  
-       <li>2</li>  
-       <li>3</li>  
-    </ul>  
+function MyApp() {
+  return (
+    <ul>
+       <li>1</li>
+       <li>2</li>
+       <li>3</li>
+    </ul>
 )}
 
-ReactDOM.render(  
-   <MyApp />,  
-   document.getElementById("root")  
+ReactDOM.render(
+   <MyApp />,
+   document.getElementById("root")
 )
 
 function MyInfo(){
@@ -67,22 +67,22 @@ function MyInfo(){
 
 export default MyInfo;
 
-function App() {  
-  return (  
-    <div>  
-      <nav>  
-        <h1>Hello a third time!</h1>  
-        <ul>  
-          <li>Thing 1</li>  
-          <li>Thing 2</li>  
-          <li>Thing 3</li>  
-        </ul>  
-      </nav>  
-      <main>  
-        <p>This is where most of my content will go...</p>  
-      </main>  
-    </div>  
-  )  
+function App() {
+  return (
+    <div>
+      <nav>
+        <h1>Hello a third time!</h1>
+        <ul>
+          <li>Thing 1</li>
+          <li>Thing 2</li>
+          <li>Thing 3</li>
+        </ul>
+      </nav>
+      <main>
+        <p>This is where most of my content will go...</p>
+      </main>
+    </div>
+  )
 }
 
 export default App
@@ -158,3 +158,37 @@ function App() {
 }
 
 export default App;
+
+import React from "react"
+
+function App() {
+    const first = "Ahsan"
+    const last = "Ghani"
+    const date = new Date()
+    const hours = date.getHours()
+    let timeOfDay
+
+    if (hours<12)
+    {
+        timeOfDay = "morning"
+    }else if (hours >= 12 && hours < 17){
+        timeOfDay = "afternoon"
+    }else{
+        timeOfDay = "night"
+    }
+
+    const styles = {
+        color: "#FF8C00",
+        backgroundColor: "#FF2D00",
+        fontSize: "200px"
+    }
+
+    return (
+        <div>
+        <h1 style={styles}>Hello {first + " " + last}!</h1>
+        <p style={styles}>It is currently about {date.getHours() % 12} in the {timeOfDay}!</p>
+        </div>
+    )
+}
+
+export default App

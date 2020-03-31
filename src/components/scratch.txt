@@ -1,0 +1,137 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+//ReactDOM.render(WHAT DO I WANT TO RENDER, WHERE DO I WANT TO RENDER IT)
+
+function App() {
+  return( 
+    ReactDOM.render(<h1>Hello World!</h1>, document.getElementId("root"))
+		);
+}
+
+function App() {
+  return( 
+   		// JSX
+      ReactDOM.render(<div><h1>Hello world!</h1><p>This is a paragraph</p></div>, document.getElementById("root"))
+
+      var myNewP = document.createElement("p")
+      myNewP.innerHTML = "This is a paragraph."
+		);
+}
+
+function App() {
+  return(
+		<h1>Hello World!</h1>
+    <p>bae is good at stats</p>
+  )
+}
+
+function App() {
+  return (
+      <div>
+          <h1>Hello World!</h1>
+          <p>bae is good at stats</p>
+      </div>
+      document.getElementbyId("root")
+  );
+}
+
+function MyApp() {  
+  return (  
+    <ul>  
+       <li>1</li>  
+       <li>2</li>  
+       <li>3</li>  
+    </ul>  
+)}
+
+ReactDOM.render(  
+   <MyApp />,  
+   document.getElementById("root")  
+)
+
+function MyInfo(){
+    return(
+    <div>
+        <h1>me</h1>
+        <p>about me</p>
+        <ul>
+            <li>khi</li>
+            <li>lhr</li>
+            <li>isl</li>
+        </ul>
+    </div>
+)
+}
+
+export default MyInfo;
+
+function App() {  
+  return (  
+    <div>  
+      <nav>  
+        <h1>Hello a third time!</h1>  
+        <ul>  
+          <li>Thing 1</li>  
+          <li>Thing 2</li>  
+          <li>Thing 3</li>  
+        </ul>  
+      </nav>  
+      <main>  
+        <p>This is where most of my content will go...</p>  
+      </main>  
+    </div>  
+  )  
+}
+
+export default App
+
+
+import React from 'react';
+import './App.css';
+
+import Header from "./components/Header"
+import MainContent from "./components/MainContent"
+import Footer from "./components/Footer"
+
+function App() {
+    return (
+        <div>
+            <Header/>
+            <MainContent/>
+            <Footer/>
+        </div>
+    )
+}
+
+export default App
+
+import React from "react"
+
+function Header() {
+    return (
+        <header>This is the header</header>
+    )
+}
+
+export default Header
+
+import React from "react"
+
+function Footer() {
+    return (
+        <footer>This is the footer</footer>
+    )
+}
+
+export default Footer
+
+import React from "react"
+
+function MainContent() {
+    return (
+        <main>This is the main section</main>
+    )
+}
+
+export default MainContent

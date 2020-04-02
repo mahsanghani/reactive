@@ -1,18 +1,13 @@
 import React from "react"
-import Joke from "./components/Joke.js"
-import joke from "./components/JokesData.js"
-import jokesData from "./components/JokesData";
+import products from "./components/products.js"
+import Product from "./components/product.js"
 
 function App() {
-    const JokeComponents = jokesData.map((joke ) => {
-        return(
-            <Joke key={joke.id} question={joke.question} answer={joke.answer} />
-        )
-    })
+    const productComponents = products.map(item => <Product key={item.id} product={item}/>)
 
     return(
         <div>
-            {JokeComponents}
+            {productComponents}
         </div>
     )
 }

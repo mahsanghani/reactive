@@ -1,3 +1,13 @@
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findindex
+
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -193,6 +203,21 @@ function App() {
 
 export default App
 
+import React from "react"
+
+function ContactCard(props) {
+    console.log(props)
+    return (
+        <div className="contact-card">
+            <img src={props.contact.imgUrl}/>
+            <h3>{props.contact.name}</h3>
+            <p>Phone: {props.contact.phone}</p>
+            <p>Email: {props.contact.email}</p>
+        </div>
+    )
+}
+
+export default ContactCard
 
 import React from "react"
 
@@ -211,7 +236,7 @@ function App() {
                 <h3>Fluffykins</h3>
                 <p>Phone: (212) 555-2345</p>
                 <p>Email: fluff@me.com</p>
-            </div>
+            </div>f
 
             <div className="contact-card">
                 <img src="http://placekitten.com/400/300"/>
@@ -231,6 +256,177 @@ function App() {
 }
 
 export default App
+
+import React from "react"
+import ContactCard from "./components/ContactCard.js"
+
+function App() {
+    return (
+        <div className="contacts">
+            <ContactCard
+                contact={{name: "Mr. Whiskerson", imgUrl: "http://placekitten.com/300/200", phone: "(212) 555-1234", email: "mr.whiskaz@catnap.meow"}}
+            />
+
+            <ContactCard
+                contact={{name: "Fluffykins", imgUrl: "http://placekitten.com/400/200", phone: "(212) 555-2345", email: "fluff@me.com"}}
+            />
+
+            <ContactCard
+                contact={{name: "Destroyer", imgUrl: "http://placekitten.com/400/300", phone: "(212) 555-3456", email: "ofworlds@yahoo.com"}}
+            />
+
+            <ContactCard
+                contact={{name: "Felix", imgUrl: "http://placekitten.com/200/100", phone: "(212) 555-4567", email: "thecat@hotmail.com"}}
+            />
+
+        </div>
+    )
+}
+
+export default App
+
+import React from "react"
+
+function Joke(props) {
+    return(
+        <div>
+            <h3 style={{display: props.question ? "block" : "none"}}>Question: {props.question}</h3>
+            <h3 style={{display: !props.question && "none"}}>Question: {props.question}</h3>
+            <h3 style={{display: !props.question && "#888888"}}>Answer: {props.answer}</h3>
+            <hr/>
+        </div>
+    )
+}
+
+export default Joke
+
+import React from "react"
+import Joke from "./components/Joke.js"
+
+function App() {
+    return (
+        <div>
+            <Joke question={"1"} answer={"2"}/>
+            <Joke question={"3"} answer={"4"}/>
+            <Joke question={"5"} answer={"6"}/>
+            <Joke question={"7"} answer={"8"}/>
+            <Joke question={"9"} answer={"0"}/>
+
+            <Joke punchLine="It’s hard to explain puns to kleptomaniacs because they always take things literally." />
+            <Joke question="What's the best thing about Switzerland?" punchLine="I don't know, but the flag is a big plus!"/>
+            <Joke question="Did you hear about the mathematician who's afraid of negative numbers?" punchLine="He'll stop at nothing to avoid them!"/>
+            <Joke question="Hear about the new restaurant called Karma?" punchLine="There’s no menu: You get what you deserve."/>
+            <Joke question="Did you hear about the actor who fell through the floorboards?" punchLine="He was just going through a stage."/>
+            <Joke question="Did you hear about the claustrophobic astronaut?" punchLine="He just needed a little space."/>
+        </div>
+    )
+}
+
+export default App
+
+const jokesData = [
+    {
+        id: 1,
+        punchLine: "It’s hard to explain puns to kleptomaniacs because they always take things literally."
+    },
+    {
+        id: 2,
+        question: "What's the best thing about Switzerland?",
+        punchLine: "I don't know, but the flag is a big plus!"
+    },
+    {
+        id: 3,
+        question: "Did you hear about the mathematician who's afraid of negative numbers?",
+        punchLine: "He'll stop at nothing to avoid them!"
+    },
+    {
+        id: 4,
+        question: "Hear about the new restaurant called Karma?",
+        punchLine: "There’s no menu: You get what you deserve."
+    },
+    {
+        id: 5,
+        question: "Did you hear about the actor who fell through the floorboards?",
+        punchLine: "He was just going through a stage."
+    },
+    {
+        id: 6,
+        question: "Did you hear about the claustrophobic astronaut?",
+        punchLine: "He just needed a little space."
+    }
+]
+
+import React from "react"
+
+function App() {
+
+    const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const doubled = nums.map(function(num) {
+        return num * 2
+    })
+    console.log(doubled)
+    return (
+        doubled
+    )
+}
+
+export default App
+
+const jokesData = [
+    {
+        id: 1,
+        answer: "It’s hard to explain puns to kleptomaniacs because they always take things literally."
+    },
+    {
+        id: 2,
+        question: "What's the best thing about Switzerland?",
+        answer: "I don't know, but the flag is a big plus!"
+    },
+    {
+        id: 3,
+        question: "Did you hear about the mathematician who's afraid of negative numbers?",
+        answer: "He'll stop at nothing to avoid them!"
+    },
+    {
+        id: 4,
+        question: "Hear about the new restaurant called Karma?",
+        answer: "There’s no menu: You get what you deserve."
+    },
+    {
+        id: 5,
+        question: "Did you hear about the actor who fell through the floorboards?",
+        answer: "He was just going through a stage."
+    },
+    {
+        id: 6,
+        question: "Did you hear about the claustrophobic astronaut?",
+        answer: "He just needed a little space."
+    }
+]
+
+export default jokesData
+
+import React from "react"
+import Joke from "./components/Joke.js"
+import joke from "./components/JokesData.js"
+import jokesData from "./components/JokesData";
+
+function App() {
+    const JokeComponents = jokesData.map((joke ) => {
+        return(
+            <Joke key={joke.id} question={joke.question} answer={joke.answer} />
+        )
+    })
+
+    return(
+        <div>
+            {JokeComponents}
+        </div>
+    )
+}
+
+export default App
+
 
 body {
     background-color: whitesmoke;

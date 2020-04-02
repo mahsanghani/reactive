@@ -1,27 +1,18 @@
-export default ContactCard
-
 import React from "react"
-import ContactCard from "./components/ContactCard.js"
+import Joke from "./components/Joke.js"
+import joke from "./components/JokesData.js"
+import jokesData from "./components/JokesData";
 
 function App() {
-    return (
-        <div className="contacts">
-            <ContactCard
-                contact={{name: "Mr. Whiskerson", imgUrl: "http://placekitten.com/300/200", phone: "(212) 555-1234", email: "mr.whiskaz@catnap.meow"}}
-            />
+    const JokeComponents = jokesData.map((joke ) => {
+        return(
+            <Joke key={joke.id} question={joke.question} answer={joke.answer} />
+        )
+    })
 
-            <ContactCard
-                contact={{name: "Fluffykins", imgUrl: "http://placekitten.com/400/200", phone: "(212) 555-2345", email: "fluff@me.com"}}
-            />
-
-            <ContactCard
-                contact={{name: "Destroyer", imgUrl: "http://placekitten.com/400/300", phone: "(212) 555-3456", email: "ofworlds@yahoo.com"}}
-            />
-
-            <ContactCard
-                contact={{name: "Felix", imgUrl: "http://placekitten.com/200/100", phone: "(212) 555-4567", email: "thecat@hotmail.com"}}
-            />
-
+    return(
+        <div>
+            {JokeComponents}
         </div>
     )
 }

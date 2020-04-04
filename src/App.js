@@ -1,20 +1,37 @@
-import React from "react";
+import React from "react"
 
-// https://scrimba.com/p/p4Mrt9/cQnMDHD
-
-class App extends React.Component {
-    constructor() {
+class App extends React.Component{
+    constructor(){
         super()
-        this.state = {
-            answer: "Yes"
+        this.state={
+            count:0
         }
+        this.handleClick=this.handleClick.bind(this)
+        this.doubles=this.doubles.bind(this)
     }
 
-    render() {
-        return (
+    handleClick(){
+        this.setState(prevState => {
+            return{
+                count: prevState.count + 1
+            }
+        })
+    }
+
+    doubles(){
+        this.setState(prevState => {
+            return {
+                count: prevState.count * 2
+            }
+        })
+    }
+
+    render(){
+        return(
             <div>
-                <h1>Is state important to know? {this.state.answer}</h1>
-                {/*<ChildComponent answer={this.state.answer}/>*/}
+                <h1>{this.state.count}</h1>
+                <button onClick={this.handleClick}>Change!</button>
+                <button onClick={this.doubles}>Double!</button>
             </div>
         )
     }

@@ -7,11 +7,15 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findindex
 
+ur hw: https://bit.ly/3aKoh6v
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 
 //ReactDOM.render(WHAT DO I WANT TO RENDER, WHERE DO I WANT TO RENDER IT)
 //https://scrimba.com/p/p7P5Hd/cepwWUp
+
+ sorry for storytime.
 
 function App() {
   return(
@@ -600,6 +604,160 @@ class App extends React.Component {
             <div>
                 <h1>Is state important to know? {this.state.answer}</h1>
                 {/*<ChildComponent answer={this.state.answer}/>*/}
+            </div>
+        )
+    }
+}
+
+export default App
+
+import React, {Component} from "react"
+
+class App extends Component{
+    constructor() {
+        super()
+        this.state = {
+            name: "Sally",
+            age: 13
+        }
+    }
+
+    render() {
+        return(
+            <div>
+                <h1>{this.state.name}</h1>
+                <h3>{this.state.age} years old</h3>
+            </div>
+        )
+    }
+}
+
+export default App
+
+import React from "react"
+
+class App extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            isLoggedIn:true
+        }
+    }
+
+    render(){
+        let wordDisplay
+        if(this.state.isLoggedIn){
+            wordDisplay="in"
+        }else{
+            wordDisplay="out"
+        }
+        return(
+            <div>
+                <h1>You are currently logged {wordDisplay}</h1>
+            </div>
+        )
+    }
+}
+
+export default App
+
+import React from "react"
+import TodoItem from "./components/TodoItem"
+import todosData from "./components/todosData"
+
+class App extends React.Component{
+    constructor() {
+        super()
+        this.state={
+            todos: todosData
+        }
+    }
+
+    render() {
+        const todoItems = this.state.todos.map(item => <TodoItem key={item.id} item={item}/>)
+        return(
+            <div className={"todo-list"}>
+                {todoItems}
+            </div>
+        )
+    }
+}
+
+export default App
+
+import React from "react"
+
+function handleClick(){
+    console.log("I was clicked")
+}
+
+// https://reactjs.org/docs/events.html#supported-events
+
+function App(){
+    return(
+        <div>
+            <img onMouseOver={() => console.log("Hovered!")}
+                 src="https://www.fillmurray.com/200/100"/>
+                 <br />
+                 <br />
+                 <button onClick={handleClick}>Click me</button>
+        </div>
+    )
+}
+
+export default App
+
+import React from "react"
+
+function TodoItem(props) {
+    return (
+        <div className="todo-item">
+            <input
+                type="checkbox"
+                checked={props.item.completed}
+                onChange={() => console.log("Changed!")}
+            />
+            <p>{props.item.text}</p>
+        </div>
+    )
+}
+
+export default TodoItem
+
+import React from "react"
+
+class App extends React.Component{
+    constructor(){
+        super()
+        this.state={
+            count:0
+        }
+        this.handleClick=this.handleClick.bind(this)
+        this.doubles=this.doubles.bind(this)
+    }
+
+    handleClick(){
+        this.setState(prevState => {
+            return{
+                count: prevState.count + 1
+            }
+        })
+    }
+
+    doubles(){
+        this.setState(prevState => {
+            return {
+                count: prevState.count * 2
+            }
+        })
+    }
+
+    render(){
+        return(
+            <div>
+                <h1>{this.state.count}</h1>
+                <button onClick={this.handleClick}>Change!</button>
+                <button onClick={this.doubles}>Double!</button>
             </div>
         )
     }

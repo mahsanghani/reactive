@@ -13,8 +13,6 @@ import ReactDOM from 'react-dom'
 //ReactDOM.render(WHAT DO I WANT TO RENDER, WHERE DO I WANT TO RENDER IT)
 //https://scrimba.com/p/p7P5Hd/cepwWUp
 
- sorry for storytime.
-
 function App() {
   return(
     ReactDOM.render(<h1>Hello World!</h1>, document.getElementId("root"))
@@ -1019,6 +1017,119 @@ class App extends Component {
                     this.state.unreadMessages.length > 0 &&
                     <h2>You have {this.state.unreadMessages.length} unread messages!</h2>
                 }
+            </div>
+        )
+    }
+}
+
+export default App
+
+/*
+Challenge:
+
+Given a stateless functional component:
+1. Follow the steps necessary to add state to it,
+    // class-based component
+    // constructor method
+2. Have state keep track of whether the user is logged in or not
+    // isLoggedIn: Boolean (true or false)
+3. Add a button that logs the user in/out
+    // event listener (onClick)
+    a. extra challenge - make the button display "log in" if they're not logged in and "log out" if they are
+        // Conditional Rendering
+4. Display text that says "Logged in" if the user is logged in, or "Logged out" if they're not.
+    // Conditional Rendering
+*/
+
+import React from "react"
+
+class App extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            isLoggedIn: false
+        }
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick() {
+        this.setState(prevState => {
+            return{
+                isLoggedIn: !prevState.isLoggedIn
+            }
+
+        })
+    }
+
+    render() {
+        let buttonText = this.state.isLoggedIn ? "LOG OUT" : "LOG IN"
+        let displayText = this.state.isLoggedIn ? "Logged In" : "Logged Out"
+        return(
+            <div>
+                <button onClick={this.handleClick}>{buttonText}</button>
+                <h1>{displayText}</h1>
+            </div>
+        )
+    }
+}
+
+export default App
+
+import React from "react"
+
+function TodoItem(props) {
+    const completedStyle = {
+        fontStyle: "italic",
+        color: "#cdcdcd",
+        textDecoration: "line-through"
+    }
+
+    return (
+        <div className="todo-item">
+            <input
+                type="checkbox"
+                checked={props.item.completed}
+                onChange={() => props.handleChange(props.item.id)}
+            />
+            <p style={props.item.completed ? completedStyle: null}>{props.item.text}</p>
+        </div>
+    )
+}
+
+export default TodoItem
+
+import React, {Component} from "react"
+
+// https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
+// https://swapi.co/
+// https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261
+
+class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            loading: false,
+            character: {}
+        }
+    }
+
+    componentDidMount() {
+        this.setState({loading: true})
+        fetch("https://swapi.co/api/people/1")
+            .then(response => response.json())
+            .then(data => {
+                this.setState({
+                    loading: false,
+                    character: data
+                })
+            })
+    }
+
+    render() {
+        const text = this.state.loading ? "loading..." : this.state.character.name
+        return (
+            <div>
+                <p>{text}</p>
             </div>
         )
     }

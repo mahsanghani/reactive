@@ -1,37 +1,22 @@
-import React from "react"
+import React, {Component} from "react";
+import conditional from "./components/conditional";
 
-class App extends React.Component{
-    constructor(){
+class App extends Component {
+    constructor() {
         super()
-        this.state={
-            count:0
+        this.state = {
+            unreadMessages: ["a", "b"]
         }
-        this.handleClick=this.handleClick.bind(this)
-        this.doubles=this.doubles.bind(this)
     }
-
-    handleClick(){
-        this.setState(prevState => {
-            return{
-                count: prevState.count + 1
-            }
-        })
-    }
-
-    doubles(){
-        this.setState(prevState => {
-            return {
-                count: prevState.count * 2
-            }
-        })
-    }
-
-    render(){
-        return(
+    // &&
+    // false && false
+    render() {
+        return (
             <div>
-                <h1>{this.state.count}</h1>
-                <button onClick={this.handleClick}>Change!</button>
-                <button onClick={this.doubles}>Double!</button>
+                {
+                    this.state.unreadMessages.length > 0 &&
+                    <h2>You have {this.state.unreadMessages.length} unread messages!</h2>
+                }
             </div>
         )
     }

@@ -7,8 +7,6 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findindex
 
-ur hw: https://bit.ly/3aKoh6v
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -764,6 +762,270 @@ class App extends React.Component{
 }
 
 export default App
+
+import React from "react"
+
+function TodoItem(props) {
+    return (
+        <div className="todo-item">
+            <input
+                type="checkbox"
+                checked={props.item.completed}
+                onChange={() => props.handleChange(props.item.id)}
+            />
+            <p>{props.item.text}</p>
+        </div>
+    )
+}
+
+export default TodoItem
+
+import React from "react"
+import TodoItem from "./components/TodoItem"
+import todosData from "./components/todosData"
+
+class App extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            todos: todosData
+        }
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(id) {
+        this.setState(prevState => {
+            const updatedTodos = prevState.todos.map(todo => {
+                if (todo.id === id) {
+                    return {
+                        ...todo,
+                        completed: !todo.completed
+                    }
+                }
+                return todo
+            })
+            return {
+                todos: updatedTodos
+            }
+        })
+    }
+
+    render() {
+        const todoItems = this.state.todos.map(item => <TodoItem key={item.id} item={item} handleChange={this.handleChange}/>)
+
+        return (
+            <div className="todo-list">
+                {todoItems}
+            </div>
+        )
+    }
+}
+
+import React, {Component} from "react"
+
+// https://engineering.musefind.com/react-lifecycle-methods-how-and-when-to-use-them-2111a1b692b1
+// https://reactjs.org/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes
+
+class TodoList extends Component {
+    constructor() {
+        super()
+        this.state = {}
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        // return the new, updated state based upon the props
+        // https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops
+        // https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
+    }
+
+    getSnapshotBeforeUpdate() {
+        // create a backup of the current way things are
+        // https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate
+    }
+
+    // componentWillMount() {
+
+    // }
+
+    componentDidMount() {
+        // GET the data I need to correctly display
+    }
+
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.whatever !== this.props.whatever) {
+    //         // do something important here
+    //     }
+    // }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        // return true if want it to update
+        // return false if not
+    }
+
+    // componentWillUpdate() {
+
+    // }
+
+    componentWillUnmount() {
+        // teardown or cleanup your code before your component disappears
+        // (E.g. remove event listeners)
+    }
+
+    render() {
+        return (
+            <div>
+                Code goes here
+            </div>
+        )
+    }
+}
+
+export default App
+
+
+export default App
+
+import React from "react"
+import randomcolor from "randomcolor"
+
+class App extends React.Component{
+    constructor(){
+        super()
+        this.state={
+            count:0,
+            color: ""
+        }
+        this.increment=this.increment.bind(this)
+        this.decrement=this.decrement.bind(this)
+        this.doubles=this.doubles.bind(this)
+    }
+
+    increment(){
+        this.setState(prevState => {
+            return{
+                count: prevState.count + 1
+            }
+        })
+    }
+
+    decrement(){
+        this.setState(prevState => {
+            return{
+                count: prevState.count - 1
+            }
+        })
+    }
+
+    doubles(){
+        this.setState(prevState => {
+            return {
+                count: prevState.count * 2
+            }
+        })
+    }
+
+    componentDidUpdate(prevProps,prevState){
+        if(prevState.count !== this.state.count) {
+            const newColor = randomcolor()
+            this.setState({color: newColor})
+        }
+    }
+
+    render(){
+        return(
+            <div>
+                <h1 style={{color: this.state.color}}>{this.state.count}</h1>
+                <button onClick={this.increment}>Increment!</button>
+                <button onClick={this.decrement}>Decrement!</button>
+                <button onClick={this.doubles}>Double!</button>
+            </div>
+        )
+    }
+}
+
+export default App
+
+import React from "react"
+
+function conditional(props) {
+    // condition ? statement if true : statement if false
+    return(props.isLoading === true ? <h1>Loading...</h1> : <h1>Some cool stuff about conditional rendering!</h1>)
+    // if(props.isLoading === true) {
+    //     return(
+    //         <h1>Loading...</h1>
+    //     )
+    // }
+    // return(
+    //     <h1>Some cool stuff about conditional rendering!</h1>
+    // )
+}
+
+export default conditional
+
+import React, {Component} from "react";
+import conditional from "./components/conditional";
+
+class App extends Component{
+    constructor() {
+        super()
+        this.state = {
+            isLoading: true
+        }
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                isLoading: false
+            })
+        }, 1500)
+    }
+
+    render() {
+        return(
+            <div>
+                <conditional isLoading={this.state.isLoading}/>
+            </div>
+        )
+    }
+}
+
+export default App
+
+import React from "react"
+
+function conditional(props) {
+    return <h1>Some cool stuff about conditional rendering</h1>
+}
+
+export default conditional
+
+import React, {Component} from "react";
+import conditional from "./components/conditional";
+
+class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            unreadMessages: ["a", "b"]
+        }
+    }
+    // &&
+    // false && false
+    render() {
+        return (
+            <div>
+                {
+                    this.state.unreadMessages.length > 0 &&
+                    <h2>You have {this.state.unreadMessages.length} unread messages!</h2>
+                }
+            </div>
+        )
+    }
+}
+
+export default App
+
 
 body {
     background-color: whitesmoke;

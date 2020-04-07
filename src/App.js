@@ -1,11 +1,17 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
+import randomcolor from "randomcolor"
 
-// Convert the class below to a functional component that uses the useState hook to initalize a count vartiable to 0 and display the count on the screen.
-// Don't worry about the part where the button changes the count quite yet, that's what you're here to learn about!
+/**
+ *
+ * useEffect replaces the following:
+ * componentDidMount
+ * componentDidUpdate
+ * componentWillUnmount
+ */
 
 function App() {
     const [count, setCount] = useState(0)
-    const [answer, setAnswer] = useState("Yes")
+    const [color, setColor] = useState("")
 
     function increment() {
         setCount(prevCount => prevCount + 1)
@@ -15,32 +21,32 @@ function App() {
         setCount(prevCount => prevCount - 1)
     }
 
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            // setCount(prevCount => prevCount + 1)
+        }, 1000)
+        return () => clearInterval(intervalId)
+    }, [])
+
+    useEffect(() => {
+        setColor(randomcolor())
+    }, [count])
+
     return (
         <div>
-            <h1>{count}</h1>
+            <h1 style={{color: color}}>{count}</h1>
             <button onClick={increment}>Increment</button>
             <button onClick={decrement}>Decrement</button>
         </div>
     )
 }
 
-// class App extends React.Component {
-//     constructor() {
-//         super()
-//         this.state = {
-//             count: 0,
-//             answer: "Yes"
-//         }
-//     }
-
-//     render() {
-//         return (
-//             <div>
-//                 <h1>{this.state.count}</h1>
-//                 <button>Change!</button>
-//             </div>
-//         )
-//     }
-// }
-
 export default App
+
+/**
+ https://medium.freecodecamp.org/every-time-you-build-a-to-do-list-app-a-puppy-dies-505b54637a5d
+
+ https://medium.freecodecamp.org/want-to-build-something-fun-heres-a-list-of-sample-web-app-ideas-b991bce0ed9a
+
+ https://medium.freecodecamp.org/summer-is-over-you-should-be-coding-heres-yet-another-list-of-exciting-ideas-to-build-a95d7704d36d
+*/
